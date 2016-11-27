@@ -260,15 +260,15 @@ header {
   right: 15px;
   padding: 3px; }
   .rejected .expand-card {
-    background-image: url("../images/rejected-expand.svg"); }
+    background-image: url("../img/rejected-expand.svg"); }
   .pending .expand-card {
-    background-image: url("../images/pending-expand.svg"); }
+    background-image: url("../img/pending-expand.svg"); }
   .development .expand-card {
-    background-image: url("../images/development-expand.svg"); }
+    background-image: url("../img/development-expand.svg"); }
   .testing .expand-card {
-    background-image: url("../images/testing-expand.svg"); }
+    background-image: url("../img/testing-expand.svg"); }
   .production .expand-card {
-    background-image: url("../images/production-expand.svg"); }
+    background-image: url("../img/production-expand.svg"); }
   .expand-card svg {
     fill: #fff; }
 
@@ -401,7 +401,7 @@ footer {
   opacity: 0;
   animation: showTips 500ms ease-in forwards;
   cursor: pointer;
-  background-image: url("../images/info.svg");
+  background-image: url("../img/info.svg");
   background-position: 4px 12px;
   background-size: 16px;
   background-repeat: no-repeat; }

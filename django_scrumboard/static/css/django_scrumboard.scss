@@ -62,7 +62,7 @@ a {
 
 header {
   background-color: $base-color;
-  
+
   li {
     padding: 15px;
     float: left;
@@ -70,7 +70,7 @@ header {
     text-align: center;
     position: relative;
     text-transform: uppercase;
-    
+
     &:after {
       content: "";
       position: absolute;
@@ -79,31 +79,31 @@ header {
       width: 100%;
       height: 1px;
     }
-    
+
     &:nth-child(1) {
       &:after {
         background: linear-gradient(to left, #cb2d3e , #ef473a);
       }
     }
-    
+
     &:nth-child(2) {
       &:after {
         background: linear-gradient(to left, #ffb347 , #ffcc33);
       }
     }
-    
+
     &:nth-child(3) {
       &:after {
         background: linear-gradient(to left, #56ab2f , #a8e063);
       }
     }
-    
+
     &:nth-child(4) {
       &:after {
         background: linear-gradient(to left, #00d2ff , #3a7bd5);
       }
     }
-    
+
     &:nth-child(5) {
       &:after {
         background: linear-gradient(to left, #4CB8C4 , #3CD3AD);
@@ -140,37 +140,37 @@ header {
   height: 40px;
   box-shadow: 3px 3px 3px rgba(0,0,0,.1);
   z-index: 2;
-  
+
   &:before {
     content: "";
     position: absolute;
     height: 100%;
     width: 1px;
   }
-  
+
   p:before,
   h5:after {
     .rejected & {
       color: #ef473a;
     }
-    
+
     .pending & {
       color: #ffcc33;
     }
-    
+
     .development & {
       color: #a8e063;
     }
-    
+
     .testing & {
       color: #3a7bd5;
     }
-    
+
     .production & {
       color: #3CD3AD;
     }
   }
-  
+
   h5 {
     font-size: 13px;
     line-height: 50px;
@@ -178,11 +178,11 @@ header {
     font-weight: 300;
     cursor: move;
   }
-  
+
   &.edit-mode {
     h5 {
       position: relative;
-      
+
       &:after {
         top: 50%;
         margin-left: 5px;
@@ -194,37 +194,37 @@ header {
       }
     }
   }
-  
+
   .rejected & {
     &:before {
       background: linear-gradient(to left, #cb2d3e , #ef473a);
     }
   }
-  
+
   .pending & {
     &:before {
       background: linear-gradient(to left, #ffb347 , #ffcc33);
     }
   }
-  
+
   .development & {
     &:before {
       background: linear-gradient(to left, #56ab2f , #a8e063);
     }
   }
-  
+
   .testing & {
     &:before {
       background: linear-gradient(to left, #00d2ff , #3a7bd5);
     }
   }
-  
+
   .production & {
     &:before {
       background: linear-gradient(to left, #4CB8C4 , #3CD3AD);
     }
   }
-  
+
   &.expanded {
     overflow: auto !important;
     height: auto !important;
@@ -236,44 +236,44 @@ header {
   font-size: 12px;
   word-wrap: break-word;
   padding-top: 0;
-  
+
   p {
     margin-bottom: 10px;
     position: relative;
-    
+
     &:before {
       position: absolute;
       left: 0;
     }
-    
+
     &:nth-child(1) {
       padding-left: 67px;
-      
+
       &:before {
         content: "Description : ";
       }
     }
-    
+
     &:nth-child(2) {
       padding-left: 72px;
-      
+
       &:before {
         content: "Remote URL : ";
       }
     }
-    
+
     &:nth-child(3) {
       padding-left: 70px;
-      
+
       &:before {
         content: "Assigned To : ";
       }
     }
   }
-  
+
   a {
     border-bottom: 1px dotted #fff;
-    
+
     &:hover {
       border-bottom-style: solid;
     }
@@ -309,7 +309,7 @@ header {
   margin: auto;
   width: 100%;
   transform: translateX(-50%) translateY(-50%);
-  
+
   .close-modal {
     border: 1px solid rgba(255,255,255,.1);
     border-radius: 50%;
@@ -324,12 +324,12 @@ header {
     transform: translateX(-50%);
     vertical-align: middle;
     cursor: pointer;
-    
+
     &:hover {
       border-color: #fff;
     }
   }
-  
+
   h3 {
     font-weight: 100;
     font-size: 30px;
@@ -339,11 +339,11 @@ header {
 
 .add-task-form {
   text-align: center;
-  
+
   li {
     margin-top: 30px;
   }
-  
+
   [type=text],
   [type=submit],
   textarea {
@@ -358,21 +358,21 @@ header {
     border: 1px solid rgba(255,255,255,.07);
     background-color: transparent;
     transition: border-color .25s linear;
-    
+
     &::-webkit-input-placeholder {
       color: rgba(255,255,255,.3);
     }
-    
+
     &:focus {
       border-color: #fff;
     }
   }
-  
+
   [type=submit] {
     cursor: pointer;
     border-color: transparent;
   }
-  
+
   textarea {
     resize: none;
     min-height: 100px;
@@ -390,27 +390,27 @@ header {
   transform: translateY(-50%);
   right: 15px;
   padding: 3px;
-  
+
   .rejected & {
-    background-image: url('../images/rejected-expand.svg');
+    background-image: url('../img/rejected-expand.svg');
   }
-  
+
   .pending & {
-    background-image: url('../images/pending-expand.svg');
+    background-image: url('../img/pending-expand.svg');
   }
-  
+
   .development & {
-    background-image: url('../images/development-expand.svg');
+    background-image: url('../img/development-expand.svg');
   }
-  
+
   .testing & {
-    background-image: url('../images/testing-expand.svg');
+    background-image: url('../img/testing-expand.svg');
   }
-  
+
   .production & {
-    background-image: url('../images/production-expand.svg');
+    background-image: url('../img/production-expand.svg');
   }
-  
+
   svg {
     fill: #fff;
   }
@@ -448,7 +448,7 @@ footer {
   img {
     width: 16px;
   }
-  
+
   &.dragged-over {
     width: 250px;
     border-radius: 3px;
@@ -458,13 +458,13 @@ footer {
 .add-task {
   z-index: 1;
   border-radius: 50%;
-  
+
   img {
     width: 30px;
     display: block;
     box-shadow: 3px 3px 3px rgba(0,0,0,.1);
   }
-  
+
   &:hover {
     img {
       animation: rotate180 .2s linear;
@@ -474,7 +474,7 @@ footer {
 
 [data-tooltip] {
   position: relative;
-  
+
   &:before {
     display: none;
     content: attr(data-tooltip);
@@ -486,7 +486,7 @@ footer {
     left: 50%;
     transform: translateY(-130%) translateX(-50%);
   }
-  
+
   &:hover {
     &:before {
       display: block;
@@ -499,7 +499,7 @@ footer {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  
+
   li {
     float: left;
     margin-right: 20px;
@@ -511,14 +511,14 @@ footer {
   text-transform: uppercase;
   font-size: 18px;
   padding: 10px;
-  
+
   sup {
     position: absolute;
     font-size: 9px;
     margin-top: -6px;
     margin-left: -3px;
   }
-  
+
   span {
     color: rgba(255,255,255,.6);
   }
@@ -534,7 +534,7 @@ footer {
 .github-ref {
   height: 30px;
   width: 30px;
-  
+
   img {
     height: 29px;
     width: 29px;
@@ -575,12 +575,12 @@ footer {
   animation: showTips 500ms ease-in forwards;
   cursor: pointer;
   background: {
-    image: url('../images/info.svg');
+    image: url('../img/info.svg');
     position: 4px 12px;
     size: 16px;
     repeat: no-repeat;
   }
-  
+
   span {
     font-size: 10px;
     font-style: italic;

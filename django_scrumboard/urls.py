@@ -6,13 +6,18 @@ from . import views
 
 urlpatterns = [
     url(
-        regex="^tasks/~create/$",
-        view=views.TaskCreateView.as_view(),
+        regex="^tasks/create/$",
+        view=views.TaskCreateView,
         name='task_create',
     ),
     url(
-        regex="^tasks/(?P<pk>\d+)/~delete/$",
-        view=views.TaskDeleteView.as_view(),
+        regex="^tasks/$",
+        view=views.TaskListView,
+        name='task_list',
+    ),
+    url(
+        regex="^tasks/delete/(?P<pk>\d+)/$",
+        view=views.TaskDeleteView,
         name='task_delete',
     ),
     url(
@@ -21,13 +26,13 @@ urlpatterns = [
         name='task_detail',
     ),
     url(
-        regex="^tasks/(?P<pk>\d+)/~update/$",
-        view=views.TaskUpdateView.as_view(),
+        regex="^tasks/update/(?P<pk>\d+)/$",
+        view=views.TaskUpdateView,
         name='task_update',
     ),
     url(
-        regex="^tasks/$",
-        view=views.TaskListView.as_view(),
-        name='task_list',
+        regex="^$",
+        view=views.TaskIndexView.as_view(),
+        name='task_index',
     ),
-	]
+]

@@ -16,7 +16,7 @@ var Helper = function() {
     checkIfEmptyRemoteURL();
     checkForEmptyAssign();
   }
-  
+
   function checkIfEmptyRemoteURL() {
     Handlebars.registerHelper('checkIfEmptyRemoteURL', function(val, options) {
       if(val) {
@@ -26,7 +26,7 @@ var Helper = function() {
       }
     });
   }
-  
+
   function checkForEmptyAssign() {
     Handlebars.registerHelper('checkIfEmptyAssigned', function(val, options) {
       if(val) {
@@ -36,7 +36,7 @@ var Helper = function() {
       }
     });
   }
-  
+
   return {
     init: init
   }

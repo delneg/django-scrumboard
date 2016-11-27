@@ -11,17 +11,20 @@
 
 var LocalStorage = function() {
   function set(key, val) {
+    console.log("Setting "+val +" for "+key);
     localStorage.setItem(key, val);
   }
-  
+
   function get(key) {
+    console.log("Getting value for "+key);
     return localStorage.getItem(key);
   }
-  
+
   function remove(key) {
+    console.log("Removing "+key);
     localStorage.removeItem(key);
   }
-  
+
   return {
     set: set,
     get: get,
