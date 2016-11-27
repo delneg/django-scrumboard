@@ -18,7 +18,7 @@ It's easy. It will boost your perfomance. It dual - offline and online.
 Plus, it's gettext translatable!
 
 
-![Glorious](https://github.com/delneg/django-scrumboard/blob/master/screenshots/one.jpg?raw=true "Screenshot")
+.. image:: https://github.com/delneg/django-scrumboard/blob/master/screenshots/one.jpg?raw=true
 
 Built upon https://github.com/i-break-codes/scrum-board
 
