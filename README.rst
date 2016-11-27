@@ -43,7 +43,7 @@ Add django-scrumboard's URL patterns:
 
     urlpatterns = [
         ...
-        url(r'^', include(django_scrumboard_urls)),
+        url(r'^scrumboard/',include('django_scrumboard.urls')),
         ...
     ]
 
