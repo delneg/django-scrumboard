@@ -7,7 +7,7 @@
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @version    1.0 Beta
  */
-@import 'https://fonts.googleapis.com/css?family=Hind+Vadodara:300,400';
+@import "https://fonts.googleapis.com/css?family=Hind+Vadodara:300,400";
 * {
   margin: 0;
   padding: 0;
@@ -118,8 +118,7 @@ header {
       top: 50%;
       margin-left: 5px;
       margin-top: 1px;
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
+      transform: translateY(-50%);
       position: absolute;
       font-size: 9px;
       content: "(Edit Mode Enabled)"; }
@@ -171,7 +170,6 @@ header {
 @keyframes rotate180 {
   to {
     transform: rotate(180deg); } }
-
 .modal {
   position: fixed;
   top: 0;
@@ -188,8 +186,7 @@ header {
   max-width: 400px;
   margin: auto;
   width: 100%;
-  -ms-transform: translateX(-50%) translateY(-50%);
-      transform: translateX(-50%) translateY(-50%); }
+  transform: translateX(-50%) translateY(-50%); }
   .modal-wrapper .close-modal {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
@@ -201,8 +198,7 @@ header {
     line-height: 52px;
     font-size: 20px;
     left: 50%;
-    -ms-transform: translateX(-50%);
-        transform: translateX(-50%);
+    transform: translateX(-50%);
     vertical-align: middle;
     cursor: pointer; }
     .modal-wrapper .close-modal:hover {
@@ -226,9 +222,7 @@ header {
     width: 100%;
     line-height: 24px;
     padding: 15px 10px;
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+    appearance: none;
     border: 1px solid rgba(255, 255, 255, 0.07);
     background-color: transparent;
     transition: border-color .25s linear; }
@@ -255,8 +249,7 @@ header {
   position: absolute;
   top: 25px;
   cursor: pointer;
-  -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
+  transform: translateY(-50%);
   right: 15px;
   padding: 3px; }
   .rejected .expand-card {
@@ -274,10 +267,9 @@ header {
 
 .removed-task-notification {
   position: absolute;
-  top: 10%;
+  bottom: 1%;
   left: 50%;
-  -ms-transform: translateX(-50%);
-      transform: translateX(-50%);
+  transform: translateX(-50%);
   padding: 5px 20px;
   color: #515151;
   border-radius: 3px;
@@ -326,8 +318,7 @@ footer {
     text-align: center;
     white-space: nowrap;
     left: 50%;
-    -ms-transform: translateY(-130%) translateX(-50%);
-        transform: translateY(-130%) translateX(-50%); }
+    transform: translateY(-130%) translateX(-50%); }
   [data-tooltip]:hover:before {
     display: block; }
 
@@ -335,8 +326,7 @@ footer {
   position: absolute;
   right: 0;
   top: 50%;
-  -ms-transform: translateY(-50%);
-      transform: translateY(-50%); }
+  transform: translateY(-50%); }
   .controls li {
     float: left;
     margin-right: 20px; }
@@ -386,8 +376,7 @@ footer {
   position: absolute;
   top: 50%;
   left: 50%;
-  -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%); }
 
 .tips {
   position: absolute;
@@ -413,3 +402,5 @@ footer {
   to {
     right: 20px;
     opacity: 1; } }
+
+/*# sourceMappingURL=django_scrumboard.css.map */
