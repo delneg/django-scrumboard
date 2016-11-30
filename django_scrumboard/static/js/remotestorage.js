@@ -35,17 +35,28 @@ var RemoteStorage = function() {
         }
     });
 
-
+    function makeOffline(status){
+        if (status == 0){
+                    window.is_offline = true;
+                    console.log("Gone offline");
+        }
+    }
+    function makeOnline() {
+        window.is_offline=false;
+        console.log("Gone ONLINE");
+    }
     function createTask(data,callback) {
         $.ajax({
             url: "/scrumboard/tasks/create/", // the endpoint
             type: "POST", // http method
             data: data,
             success: function (json) {
+                makeOnline();
                 callback({"data":json,"error":null});
             },
 
             error: function (xhr, errmsg, err) {
+                makeOffline(xhr.status);
                 var error_msg = xhr.status + ": " + xhr.responseText;
                 callback({"data":error_msg,"error":true});
             }
@@ -56,10 +67,12 @@ var RemoteStorage = function() {
             url: "/scrumboard/tasks/", // the endpoint
             type: "GET", // http method
             success: function (json) {
+                makeOnline();
                 callback({"data":json,"error":null});
             },
 
             error: function (xhr, errmsg, err) {
+                makeOffline(xhr.status);
                 var error_msg = xhr.status + ": " + xhr.responseText;
                 callback({"data":error_msg,"error":true});
             }
@@ -73,9 +86,11 @@ var RemoteStorage = function() {
             type: "DELETE",
             data: {"csrfmiddlewaretoken" : csrftoken},
             success: function (json) {
+                makeOnline();
                 callback({"data":json,"error":null});
             },
             error: function (xhr, errmsg, err) {
+                makeOffline(xhr.status);
                 var error_msg = xhr.status + ": " + xhr.responseText;
                 callback({"data":error_msg,"error":true});
             }
@@ -88,11 +103,13 @@ var RemoteStorage = function() {
             type: "POST",
             data: data,
             success: function (json) {
+                makeOnline();
                 callback({"data":json,"error":null});
             },
             error: function (xhr, errmsg, err) {
+                makeOffline(xhr.status);
                 var error_msg = xhr.status + ": " + xhr.responseText;
-                callback({"data":error_msg,"error":true});
+                callback({"data":error_msg,"error":true,"status":xhr.status});
             }
         })
     }

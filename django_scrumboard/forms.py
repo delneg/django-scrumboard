@@ -15,7 +15,7 @@ class TaskForm(forms.ModelForm):
             "rows":"3",
             'placeholder': _("Description")
         })
-        self.fields['description'].required = False
+        self.fields['description'].required = True
         self.fields['url'].widget = forms.TextInput(attrs={
             "name": "remote_url",
             'placeholder': _("Task remote URL")

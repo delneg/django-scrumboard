@@ -16,7 +16,7 @@ from django.core import serializers
 from .forms import TaskForm
 from django.shortcuts import get_object_or_404
 import copy
-
+from django.forms import URLField,ValidationError
 @require_POST
 def TaskCreateView(request):
     if request.is_ajax():
@@ -44,9 +44,9 @@ def TaskDeleteView(request,pk):
         t = Task.objects.filter(id=pk).first()
         if not t:
             return Http404("No such task")
-        deleted_id = copy.copy(t.id)
+        deleted_title = copy.copy(t.title)
         t.delete()
-        return JsonResponse({"result":True,"id":deleted_id})
+        return JsonResponse({"result":True,"title":deleted_title})
     else:
         return HttpResponseBadRequest("Must be ajax")
 
@@ -63,16 +63,41 @@ def TaskUpdateView(request,pk):
         if not t:
             return Http404("No such task")
         status = request.POST.get("status",None)
+        description = request.POST.get("description",None)
+        url = request.POST.get("url",None)
+        assigned_to = request.POST.get("assigned_to",None)
+
         if status:
             if not isinstance(status, str):
                 return HttpResponseBadRequest("Status must be a string")
             #  TODO: add check for choices
             t.status = status
-            t.save()
-            return JsonResponse({"result":True,"id":t.id})
+        elif description:
+            if not isinstance(description,str):
+                return HttpResponseBadRequest("Description must be a string")
+            t.description = description
 
+        elif url:
+            if not isinstance(url,str):
+                return HttpResponseBadRequest("URL must be a string")
+            else:
+                try:
+                    f = URLField()
+                    f.clean(url)
+                except ValidationError:
+                    return HttpResponseBadRequest("Not a valid URL")
+                except Exception:
+                    return HttpResponseBadRequest("Unknown error with URL")
+            t.url = url
 
-
+        elif assigned_to:
+            if not isinstance(assigned_to,str):
+                return HttpResponseBadRequest("Assigned_to must be a string")
+            t.assigned_to = assigned_to
+        else:
+            return HttpResponseBadRequest("No valid field to edit")
+        t.save()
+        return JsonResponse({"result": True, "id": t.id, "title": t.title})
     else:
         return HttpResponseBadRequest("Must be ajax")
 

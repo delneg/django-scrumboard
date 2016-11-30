@@ -420,6 +420,7 @@ header {
   position: absolute;
   bottom: 1%;
   left: 50%;
+  font-size: large;
   transform: translateX(-50%);
   padding: 5px 20px;
   color: #515151;
@@ -427,6 +428,20 @@ header {
   background-color: rgba(255,255,255,.8);
   box-sizing: 0 0 3px rgba(0,0,0,.6);
 }
+
+.offline-notification {
+  position: absolute;
+  bottom:1%;
+  left:15%;
+  transform: translateX(50%);
+  padding: 5px 20px;
+  color: #fff;
+  font-size:larger;
+  border-radius: 3px;
+  background-color: #cb2d3e;
+  box-sizing: border-box;
+}
+
 
 footer {
   height: 50px;

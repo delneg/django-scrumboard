@@ -66,12 +66,12 @@ TODO
 * Remove CSRF token from saved tasks
 * Add configs
 * Add wrong form alerts
-* Add alerts about offline, tasks read/created/updated/deleted online/offline
+* Add alerts about offline, tasks read/created/updated/deleted online/offline -- UPD: migrate to [OfflineJS](http://github.hubspot.com/offline/)
 * Save created tasks offline
 * Fix delete/update syncronisation between offline/online
 * Add permission checks
 * Use django template engine instead of handlebars (?)
-* Show user when he is offline/online
+* ✅ Show user when he is offline/online
 * Add service worker
 
 Running Tests

@@ -1,12 +1,15 @@
 /**
- * scrum-board
+ * django-scrum-board
  *
  * @category   scrum-board
- * @author     Vaibhav Mehta <vaibhav@decodingweb.com>
- * @copyright  Copyright (c) 2016 Vaibhav Mehta <https://github.com/i-break-codes>
+ * @author     Denis Yakushin <delneg@yandex.ru>
+ * @copyright  Copyright (c) 2016 Denis Yakushin <https://github.com/delneg>
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @version    1.0 Beta
+ * @version    0.1.1 Alpha
  */
+//TODO: fix the bug when description is empty
+    //TODO: check the actual errors for the offline status, not server error
+
 var handlebarsTemplate = '{{#each this}}' +
     '<div class="card" data-task-id="{{id}}">' +
     '<a href="#" class="expand-card"></a>' +
@@ -25,6 +28,7 @@ var handlebarsTemplate = '{{#each this}}' +
 
 var App = function () {
     function init() {
+        offline();
         tips();
         preset();
         draggable();
@@ -37,6 +41,22 @@ var App = function () {
         exitEditMode();
     }
 
+    function alert(text) {
+        $('#task-notification').text(text).removeClass('hide');
+        setTimeout(function () {
+            $('#task-notification').text('').addClass('hide');
+        }, 3000);
+    }
+    function offline(){
+        setInterval(function () {
+           if(window.is_offline){
+               $("#offline").removeClass('hide');
+
+           } else {
+               $("#offline").addClass('hide');
+           }
+        },500);
+    }
     function preset() {
         $('#remove').on('click', function (e) {
             e.preventDefault();
@@ -90,15 +110,6 @@ var App = function () {
                         LocalStorage.set('task-' + obj.id, JSON.stringify(obj));
                         LocalStorage.set('taskCounter', iid);
 
-                        var newCard = template([obj]);
-                        $('#dashboard #' + obj.status).append(newCard);
-                        draggable();
-
-                        $('.close-modal').trigger('click');
-
-                        //Clear form fields after submit
-                        $(this).find('input[type=text], textarea').val('');
-
                     } else {
 
                         console.log("Created task id" + a.data.id);
@@ -106,14 +117,15 @@ var App = function () {
                         obj.status = a.data.status;
                         LocalStorage.set('task-' + a.data.id, JSON.stringify(obj));
                         LocalStorage.set('taskCounter', a.data.id);
-                        var newCard = template([obj]);
-                        $('#dashboard #' + obj.status).append(newCard);
-                        draggable();
-                        $('.close-modal').trigger('click');
-
-                        //Clear form fields after submit
-                        $(this).find('input[type=text], textarea').val('');
                     }
+
+                    var newCard = template([obj]);
+                    $('#dashboard #' + obj.status).append(newCard);
+                    draggable();
+                    $('.close-modal').trigger('click');
+
+                    //Clear form fields after submit
+                    $("#add-task-form").find('input[type=text], textarea').val('');
                 });
 
             });
@@ -129,11 +141,22 @@ var App = function () {
         $(document).on('input', '.card p', function () {
             var taskId = $(this).parents('.card').data('task-id');
             var fieldToEdit = $(this).data('field');
+            var input = $(this).text();
+            var newData = {};
+            newData[fieldToEdit]=input;
+            RemoteStorage.updateTask(taskId, newData, function (a) {
+                if (a.error) {
+                    //display offline
+                    console.log("Couldn't update task "+taskId);
+                } else {
+                    //success silently
+                    console.log("Updated task "+a.data.title+" field "+fieldToEdit+ " to data "+ input);
+                }
+            });
             var getTaskData = JSON.parse(LocalStorage.get('task-' + taskId));
-
-            getTaskData[fieldToEdit] = $(this).text();
-
+            getTaskData[fieldToEdit] = input;
             LocalStorage.set('task-' + taskId, JSON.stringify(getTaskData));
+
         });
     }
 
@@ -177,31 +200,25 @@ var App = function () {
 
                     elm.remove(); // delete the element first, because the task will be deleted anyway - locally or remotely
                     LocalStorage.remove('task-' + taskId); // delete task locally
-                    RemoteStorage.deleteTask(taskId,function (a) {
-                       if (a.error){
-                           $('#task-notification').text('Task removal error, deleted task only locally').removeClass('hide');
-                       }  else {
-                           $('#task-notification').text('Task id '+a.data.id+' removed successfully').removeClass('hide');
-                       }
-                        setTimeout(function () {
-                            $('#task-notification').text('').addClass('hide');
-                        }, 3000);
+                    RemoteStorage.deleteTask(taskId, function (a) {
+                        if (a.error) {
+                            alert('Task removal error, deleted task only locally');
+                        } else {
+                            alert('Task ' + a.data.title + ' removed successfully');
+                        }
                     });
 
                 } else {
                     //Moves task
                     if (parentId != currentId) {
                         $(elm).detach().removeAttr('style').appendTo(this);
-                        RemoteStorage.updateTask(taskId,{"status":currentId},function (a) {
-                            if (a.error){
-                                $('#task-notification').text('Task move error, moved task only locally').removeClass('hide');
+                        RemoteStorage.updateTask(taskId, {"status": currentId}, function (a) {
+                            if (a.error) {
+                                alert('Task move error, moved task only locally');
                             } else {
-                                $('#task-notification').text('Task id '+taskId+' moved to '+currentId +' successfully').removeClass('hide');
-                              //add something like spinner.stopSpinning() here later
+                                alert('Task ' + a.data.title + ' moved to ' + currentId + ' successfully');
+                                //TODO: add something like spinner.stopSpinning() here later
                             }
-                            setTimeout(function () {
-                            $('#task-notification').text('').addClass('hide');
-                        }, 3000);
                         });
                         var getTaskData = JSON.parse(LocalStorage.get('task-' + taskId));
                         getTaskData.status = currentId;
@@ -235,8 +252,6 @@ var App = function () {
             if (a.error) {
                 console.log("Tasks error");
                 var getAllData = localStorage;
-
-
                 for (var data in getAllData) {
                     if (data.split('-')[0] == 'task') {
                         getTasks.push(JSON.parse(localStorage[data]));
