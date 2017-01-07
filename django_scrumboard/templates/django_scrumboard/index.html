@@ -99,6 +99,10 @@
     <script src="{% static "js/helper.js" %}"></script>
     <script src="{% static "js/localstorage.js" %}" charset="utf-8"></script>
     <script src="{% static "js/remotestorage.js" %}" charset="utf-8"></script>
+    <script>
+        var config = {url: "/scrumboard"};
+        var RemoteStorage = RemoteStorage(config);
+    </script>
     <script src="{% static "js/django_scrumboard.js" %}" charset="utf-8"></script>
   </body>
 </html>

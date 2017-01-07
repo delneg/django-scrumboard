@@ -2,9 +2,9 @@
  * Created by Delneg on 27.11.16.
  */
 
-var RemoteStorage = function() {
+var RemoteStorage = function(config) {
     //TODO: add config for urls
-
+    var scrumboard_url = config.url || "/scrumboard";
     //For getting CSRF token
     function getCookie(name) {
         var cookieValue = null;
@@ -47,7 +47,7 @@ var RemoteStorage = function() {
     }
     function createTask(data,callback) {
         $.ajax({
-            url: "/scrumboard/tasks/create/", // the endpoint
+            url: scrumboard_url+"/tasks/create/", // the endpoint
             type: "POST", // http method
             data: data,
             success: function (json) {
@@ -64,7 +64,7 @@ var RemoteStorage = function() {
     }
     function getTasks(callback) {
         $.ajax({
-            url: "/scrumboard/tasks/", // the endpoint
+            url: scrumboard_url+"/tasks/", // the endpoint
             type: "GET", // http method
             success: function (json) {
                 makeOnline();
@@ -82,7 +82,7 @@ var RemoteStorage = function() {
     function deleteTask(id,callback) {
         var csrftoken = getCookie('csrftoken');
         $.ajax({
-            url: "/scrumboard/tasks/delete/"+id+"/",
+            url: scrumboard_url+"/tasks/delete/"+id+"/",
             type: "DELETE",
             data: {"csrfmiddlewaretoken" : csrftoken},
             success: function (json) {
@@ -99,7 +99,7 @@ var RemoteStorage = function() {
 
     function updateTask(id,data,callback){
         $.ajax({
-            url: "/scrumboard/tasks/update/"+id+"/",
+            url: scrumboard_url+"/tasks/update/"+id+"/",
             type: "POST",
             data: data,
             success: function (json) {
@@ -120,4 +120,4 @@ var RemoteStorage = function() {
     deleteTask: deleteTask,
     updateTask: updateTask
   }
-}();
+};
