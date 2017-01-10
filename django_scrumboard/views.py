@@ -7,7 +7,7 @@ from django.views.generic import (
 from .models import (
     Task,
 )
-from django.http import HttpResponseBadRequest, JsonResponse, HttpResponse, Http404
+from django.http import HttpResponseBadRequest, JsonResponse, Http404
 from django.views.decorators.http import require_POST, require_GET, require_http_methods
 from .forms import TaskForm
 import copy
