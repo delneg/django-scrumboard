@@ -1,23 +1,22 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import url
-from django.views.generic import TemplateView
 
 from . import views
 
 urlpatterns = [
     url(
         regex="^tasks/create/$",
-        view=views.TaskCreateView,
+        view=views.task_create_view,
         name='task_create',
     ),
     url(
         regex="^tasks/$",
-        view=views.TaskListView,
+        view=views.task_list_view,
         name='task_list',
     ),
     url(
         regex="^tasks/delete/(?P<pk>\d+)/$",
-        view=views.TaskDeleteView,
+        view=views.task_delete_view,
         name='task_delete',
     ),
     url(
@@ -27,7 +26,7 @@ urlpatterns = [
     ),
     url(
         regex="^tasks/update/(?P<pk>\d+)/$",
-        view=views.TaskUpdateView,
+        view=views.task_update_view,
         name='task_update',
     ),
     url(

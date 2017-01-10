@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('django_scrumboard', '0001_initial'),
     ]
@@ -15,6 +14,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='task',
             name='status',
-            field=models.CharField(choices=[('Rejected', 'Rejected'), ('Pending', 'Pending'), ('In progress', 'In progress'), ('Testing', 'Testing'), ('Done', 'Done')], default='Pending', max_length=20, verbose_name='Status'),
+            field=models.CharField(
+                choices=[('Rejected', 'Rejected'), ('Pending', 'Pending'), ('In progress', 'In progress'),
+                         ('Testing', 'Testing'), ('Done', 'Done')], default='Pending', max_length=20,
+                verbose_name='Status'),
         ),
     ]
